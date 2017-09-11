@@ -1,0 +1,6 @@
+name    value   default_value
+dynamic.apichecker.enabled      true    false
+user.authenticators.exclude     NULL    NULL
+user.authenticators.order       MD5,PBKDF2,SHA256SALT,PLAINTEXT PBKDF2,SHA256SALT,MD5,LDAP,SAML2,PLAINTEXT
+user.password.encoders.exclude  PLAINTEXT       NULL
+user.password.encoders.order    MD5,PBKDF2,SHA256SALT,LDAP,SAML2        PBKDF2,SHA256SALT,MD5,LDAP,SAML2,PLAINTEXT
