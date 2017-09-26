@@ -26,8 +26,8 @@ if __name__ == "__main__":
 			print('args: {}'.format(str(e.args)))
 		except Exception as e:
 			print('=== ' + config['name'] + ' ===')
-			print('type:' + str(type(e)))
-			print('message:' + e.message)
+			print('type: {}'.format(str(type(e))))
+			print('message:'.format(e.message))
 
 
 		try:
@@ -39,22 +39,3 @@ if __name__ == "__main__":
 			print('message:' + e.message)
 			print('e itself:' + str(e))
 
-exit
-"""
-	### OK ###
-	if runJob.VersionCheck("4.9.1.0").test():
-		print("success")
-	else:
-		print("fail")
-
-	### MS Server SKIPPED ###
-	if runJob.MSServer().test():
-		pass
-
-	### OK ###
-	ret = runJob.AuthSetting().test() 
-	if ret == 31:
-		print("success")
-	else:
-		print("fail")
-"""

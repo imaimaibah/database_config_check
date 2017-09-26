@@ -1,10 +1,22 @@
 import os,sys,exec_sql
 from exec_sql import ExecSQL
 
+class Colors:
+    HEADER = '\033[95m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 class SQLRunner(object):
 	def __init__(self,config):
 		self.config = config;
 		self.data = ExecSQL(self.config['sql']).structDataFromSQL()
+		del(self.data[0])
+		print("{}{}START TEST{}: {}".format(Colors.HEADER,Colors.UNDERLINE,Colors.ENDC,config['name']))
 
 
 class VersionCheck(SQLRunner):
@@ -13,10 +25,11 @@ class VersionCheck(SQLRunner):
 
 	def test(self):
 		rindex = len(self.data)
-		if self.data[rindex-1][1] == self.config["value"]:
-			return 1
+		version = self.data[rindex-1][1]
+		if version == self.config["value"]:
+			print("  {}Correct{}: Version is {}.".format(Colors.GREEN,Colors.ENDC,version))
 		else:
-			return 0
+			print("  {}Incorrect{}: Version is {}. It should be {}.".format(Colors.FAIL, Colors.ENDC, version, self.config['value']))
 
 
 class GlobalSettings(SQLRunner):
@@ -24,24 +37,46 @@ class GlobalSettings(SQLRunner):
 		super(GlobalSettings,self).__init__(config)
 
 	def test(self):
-		ret = 0
 		for data in self.data:
-			if data[0] == "user.password.encoders.exclude" and data[1] == "PLAINTEXT":
-				ret += 1
-			elif data[0] == "user.password.encoders.order" and data[1] == "MD5,PBKDF2,SHA256SALT,LDAP,SAML2":
-				ret += 2
-			elif data[0] == "user.authenticators.exclude" and data[1] == "NULL":
-				ret += 4
-			elif data[0] == "user.authenticators.order" and data[1] == "MD5,PBKDF2,SHA256SALT,PLAINTEXT":
-				ret += 8
-			elif data[0] == "dynamic.apichecker.enabled" and data[1] == "true":
-				ret += 16
-
-		return ret
+			try:
+				if data[1] == self.config['value'][data[0]]:
+					print("  {}Correct{}: {} is set to {}.".format(Colors.GREEN,Colors.ENDC,data[0], data[1]))
+				else:
+					print("  {}Incorrect{}: {} is set to {}. It should be {}.".format(Colors.FAIL, Colors.ENDC, data[0], data[1], self.config['value'][data[0]]))
+			except:
+				next
 
 class RolePermissions(SQLRunner):
 	def __init__(self,config):
 		super(RolePermissions,self).__init__(config)
+
+	def test(self):
+		pass
+
+class DiskOffering(SQLRunner):
+	def __init__(self,config):
+		super(DiskOffering,self).__init__(config)
+
+	def test(self):
+		pass
+
+class NetworkOffering(SQLRunner):
+	def __init__(self,config):
+		super(NetworkOffering,self).__init__(config)
+
+	def test(self):
+		pass
+
+class ServiceOffering(SQLRunner):
+	def __init__(self,config):
+		super(ServiceOffering,self).__init__(config)
+
+	def test(self):
+		pass
+
+class TrafficLable(SQLRunner):
+	def __init__(self,config):
+		super(TrafficLable,self).__init__(config)
 
 	def test(self):
 		pass
