@@ -1,8 +1,13 @@
 import os,re
 
+MYSQL_SERVER = "10.10.10.10"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "root"
+
 class ExecSQL:
-	def __init__(self,cmd):
+	def __init__(self,sql):
 		self.data = []
+		cmd = "mysql -u {} -p{} -h {} -e '{}' 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, sql)
 		self.cmd = cmd
 
 	def readData(self):

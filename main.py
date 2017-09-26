@@ -5,9 +5,6 @@ import os,sys,runJob,readConfig,jobMapper
 from jobMapper import JobMapper
 
 CONFIG_FILE = "sample_config.json"
-MYSQL_SERVER = "10.10.10.10"
-MYSQL_USER = "root"
-MYSQL_PASSWORD = "root"
 
 
 if __name__ == "__main__":
@@ -20,11 +17,11 @@ if __name__ == "__main__":
 		try: 
 			job = jobmapper.class_def[config["job"]](config)
 		except KeyError as e:
-			print('=== Error ===')
+			print('=== ' + config['name'] + ' ===')
 			print('type: {}'.format(str(type(e))))
 			print('args: {}'.format(str(e.args)))
 		except TypeError as e:
-			print('=== Error ===')
+			print('=== ' + config['name'] + ' ===')
 			print('type: {}'.format(str(type(e))))
 			print('args: {}'.format(str(e.args)))
 		except Exception as e:

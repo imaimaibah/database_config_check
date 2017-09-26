@@ -17,8 +17,8 @@
 		}
 	},{
 		"name": "Role Permissions",
-		"job": "",
-		"sql": "",
+		"job": "RolePermissions",
+		"sql": "iii",
 		"value": ""
 	}
 ]

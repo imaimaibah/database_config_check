@@ -3,9 +3,8 @@ from exec_sql import ExecSQL
 
 class SQLRunner(object):
 	def __init__(self,config):
-		sql = "cat dummyData/1.log"
 		self.config = config;
-		self.data = ExecSQL(sql).structDataFromSQL()
+		self.data = ExecSQL(self.config['sql']).structDataFromSQL()
 
 
 class VersionCheck(SQLRunner):
@@ -39,6 +38,13 @@ class GlobalSettings(SQLRunner):
 				ret += 16
 
 		return ret
+
+class RolePermissions(SQLRunner):
+	def __init__(self,config):
+		super(RolePermissions,self).__init__(config)
+
+	def test(self):
+		pass
 
 if __name__ == "__main__":
 	print("Usage")
