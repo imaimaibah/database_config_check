@@ -1,0 +1,24 @@
+[
+	{
+		"name": "Version Check",
+		"job": "VersionCheck",
+		"sql": "iii",
+		"value": "4.9.1.0"
+	},{
+		"name": "Global Settings",
+		"job": "GlobalSettings",
+		"sql": "iii",
+		"value": {
+			"user.password.encoders.exclude": "PLAINTEXT",
+			"user.password.encoders.order": "MD5,PBKDF2,SHA256SALT,LDAP,SAML2",
+			"user.authenticators.exclude": "NULL",
+			"user.authenticators.order": "MD5,PBKDF2,SHA256SALT,PLAINTEXT",
+			"dynamic.apichecker.enabled": "true"
+		}
+	},{
+		"name": "Role Permissions",
+		"job": "",
+		"sql": "",
+		"value": ""
+	}
+]

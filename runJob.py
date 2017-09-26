@@ -1,39 +1,28 @@
-import os
-import sys
-import exec_sql
+import os,sys,exec_sql
+from exec_sql import ExecSQL
 
-""" One """
-class VersionCheck():
-	def __init__(self,version):
-		self.cmd = "cat dummyData/1.log"
-		self.version = version;
-		self.data = exec_sql.ExecSQL(self.cmd).structDataFromSQL()
+class SQLRunner(object):
+	def __init__(self,config):
+		sql = "cat dummyData/1.log"
+		self.config = config;
+		self.data = ExecSQL(sql).structDataFromSQL()
+
+
+class VersionCheck(SQLRunner):
+	def __init__(self,config):
+		super(VersionCheck,self).__init__(config)
 
 	def test(self):
 		rindex = len(self.data)
-		if self.data[rindex-1][1] == self.version:
+		if self.data[rindex-1][1] == self.config["value"]:
 			return 1
 		else:
 			return 0
 
-""" Two """
-class MSServer():
-	def __init__(self):
-		self.cmd = "cat dummyData/2.log"
 
-	def run(self):
-		s = exec_sql.ExecSQL(self.cmd)
-		s.structDataFromSQL
-		print("jobTwo")
-
-	def test(self):
-		pass
-
-""" Three """
-class AuthSetting():
-	def __init__(self):
-		self.cmd = "cat dummyData/3.log"
-		self.data = exec_sql.ExecSQL(self.cmd).structDataFromSQL()
+class GlobalSettings(SQLRunner):
+	def __init__(self,config):
+		super(GlobalSettings,self).__init__(config)
 
 	def test(self):
 		ret = 0
@@ -50,20 +39,6 @@ class AuthSetting():
 				ret += 16
 
 		return ret
-
-
-""" Six and Seven """
-class GlobalSettings():
-	def __init__(self):
-		self.cmd = "cat dummyData/6-7.log"
-		s = exec_sql.ExecSQL(self.cmd)
-		s.structDataFromSQL()
-		self.data = s.data
-
-	def run(self):
-		s = exec_sql.ExecSQL(self.cmd)
-		s.structDataFromSQL
-		print("jobSix&Seven")
 
 if __name__ == "__main__":
 	print("Usage")

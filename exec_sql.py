@@ -1,5 +1,4 @@
-import os 
-import re
+import os,re
 
 class ExecSQL:
 	def __init__(self,cmd):
@@ -22,7 +21,7 @@ class ExecSQL:
 			line = line.rstrip('\n')
 			element = re.split(r"[\s\t]+",line);
 			self.data.append(element)
-		elif re.match(r'^.+$',line):
+		elif not re.match(r'^$',line):
 			line = line.rstrip('\n')
 			element = re.split(r"[\s\t]+",line);
 			self.data.append(element)
