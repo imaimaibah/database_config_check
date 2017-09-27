@@ -10,11 +10,12 @@ class ExecSQL(ReadConfig):
 		MYSQL_SERVER = self.data["db_host"]
 		MYSQL_USER = self.data["db_user"]
 		MYSQL_PASSWORD = self.data["db_password"]
+		MYSQL_DB = self.data["db_name"]
 		self.data = []
 		if not MYSQL_PASSWORD:
-			cmd = "mysql -u {0} -h {1} -e '{2}' 2>/dev/null".format(MYSQL_USER, MYSQL_SERVER, sql)
+			cmd = "mysql -u {0} -h {1} {2} -e '{3}' 2>/dev/null".format(MYSQL_USER, MYSQL_SERVER, MYSQL_DB, sql)
 		else:
-			cmd = "mysql -u {0} -p{1} -h {2} -e '{3}' 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, sql)
+			cmd = "mysql -u {0} -p{1} -h {2} {3} -e '{4}' 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, MYSQL_DB, sql)
 		''' Delete bellow line on the host '''
 		cmd = sql
 		self.cmd = cmd
