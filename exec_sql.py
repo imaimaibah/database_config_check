@@ -1,13 +1,21 @@
-import os,re
+import os,re,sys
+from readConfig import ReadConfig
 
-MYSQL_SERVER = "10.10.10.10"
-MYSQL_USER = "root"
-MYSQL_PASSWORD = "root"
+CONFIG_FILE = sys.argv[1] if len(sys.argv) > 1 else "sample_config.json"
 
-class ExecSQL:
+class ExecSQL(ReadConfig):
 	def __init__(self,sql):
+		super(ExecSQL,self).__init__()
+		self.readFile(CONFIG_FILE)
+		MYSQL_SERVER = self.data["db_host"]
+		MYSQL_USER = self.data["db_user"]
+		MYSQL_PASSWORD = self.data["db_password"]
 		self.data = []
-		#cmd = "mysql -u {} -p{} -h {} -e '{}' 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, sql)
+		if not MYSQL_PASSWORD:
+			cmd = "mysql -u {0} -h {1} -e '{2}' 2>/dev/null".format(MYSQL_USER, MYSQL_SERVER, sql)
+		else:
+			cmd = "mysql -u {0} -p{1} -h {2} -e '{3}' 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, sql)
+		''' Delete bellow line on the host '''
 		cmd = sql
 		self.cmd = cmd
 
@@ -23,11 +31,7 @@ class ExecSQL:
 
 
 	def structData(self, line):
-		if re.match(r'^[0-9]+',line):
-			line = line.rstrip('\n')
-			element = re.split(r"[\s\t]+",line);
-			self.data.append(element)
-		elif not re.match(r'^$',line):
+		if not re.match(r'^$',line):
 			line = line.rstrip('\n')
 			element = re.split(r"[\s\t]+",line);
 			self.data.append(element)

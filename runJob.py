@@ -16,7 +16,7 @@ class SQLRunner(object):
 		self.config = config;
 		self.data = ExecSQL(self.config['sql']).structDataFromSQL()
 		del(self.data[0])
-		print("{}{}START TEST{}: {}".format(Colors.HEADER,Colors.UNDERLINE,Colors.ENDC,config['name']))
+		print("{0}{1}START TEST{2}: {3}".format(Colors.HEADER,Colors.UNDERLINE,Colors.ENDC,config['name']))
 
 
 class VersionCheck(SQLRunner):
@@ -27,9 +27,9 @@ class VersionCheck(SQLRunner):
 		rindex = len(self.data)
 		version = self.data[rindex-1][1]
 		if version == self.config["value"]:
-			print("  {}Correct{}: Version is {}.".format(Colors.GREEN,Colors.ENDC,version))
+			print("  {0}Correct{1}: Version is {2}.".format(Colors.GREEN,Colors.ENDC,version))
 		else:
-			print("  {}Incorrect{}: Version is {}. It should be {}.".format(Colors.FAIL, Colors.ENDC, version, self.config['value']))
+			print("  {0}Incorrect{1}: Version is {2}. It should be {3}.".format(Colors.FAIL, Colors.ENDC, version, self.config['value']))
 
 
 class GlobalSettings(SQLRunner):
@@ -40,9 +40,9 @@ class GlobalSettings(SQLRunner):
 		for data in self.data:
 			try:
 				if data[1] == self.config['value'][data[0]]:
-					print("  {}Correct{}: {} is set to {}.".format(Colors.GREEN,Colors.ENDC,data[0], data[1]))
+					print("  {0}Correct{1}: {2} is set to {3}.".format(Colors.GREEN,Colors.ENDC,data[0], data[1]))
 				else:
-					print("  {}Incorrect{}: {} is set to {}. It should be {}.".format(Colors.FAIL, Colors.ENDC, data[0], data[1], self.config['value'][data[0]]))
+					print("  {0}Incorrect{2}: {2} is set to {3}. It should be {4}.".format(Colors.FAIL, Colors.ENDC, data[0], data[1], self.config['value'][data[0]]))
 			except:
 				next
 

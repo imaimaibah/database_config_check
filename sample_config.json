@@ -1,44 +1,49 @@
-[
-	{
-		"name": "Version Check",
-		"job": "VersionCheck",
-		"sql": "cat dummyData/1.log",
-		"value": "4.9.1.0"
-	},{
-		"name": "Global Settings",
-		"job": "GlobalSettings",
-		"sql": "cat dummyData/3.log",
-		"value": {
-			"user.password.encoders.exclude": "PLAINTEXT",
-			"user.password.encoders.order": "MD5,PBKDF2,SHA256SALT,LDAP,SAML2",
-			"user.authenticators.exclude": "ULL",
-			"user.authenticators.order": "MD5,PBKDF2,SHA256SALT,PLAINTEXT",
-			"dynamic.apichecker.enabled": "true"
+{
+	"db_user": "root",
+	"db_password": "root",
+	"db_host": "127.0.0.1",
+	"contents": [
+		{
+			"name": "Version Check",
+			"job": "VersionCheck",
+			"sql": "cat dummyData/1.log",
+			"value": "4.9.1.0"
+		},{
+			"name": "Global Settings",
+			"job": "GlobalSettings",
+			"sql": "cat dummyData/3.log",
+			"value": {
+				"user.password.encoders.exclude": "PLAINTEXT",
+				"user.password.encoders.order": "MD5,PBKDF2,SHA256SALT,LDAP,SAML2",
+				"user.authenticators.exclude": "NULL",
+				"user.authenticators.order": "MD5,PBKDF2,SHA256SALT,PLAINTEXT",
+				"dynamic.apichecker.enabled": "true"
+			}
+		},{
+			"name": "Role Permissions",
+			"job": "RolePermissions",
+			"sql": "cat dummyData/3.log",
+			"value": ""
+		},{
+			"name": "Disk Offering",
+			"job": "DiskOffering",
+			"sql": "cat dummyData/3.log",
+			"value": ""
+		},{
+			"name": "Network Offering",
+			"job": "NetworkOffering",
+			"sql": "cat dummyData/3.log",
+			"value": ""
+		},{
+			"name": "Service Offering",
+			"job": "ServiceOffering",
+			"sql": "cat dummyData/3.log",
+			"value": ""
+		},{
+			"name": "Traffic Lable",
+			"job": "TrafficLable",
+			"sql": "cat dummyData/3.log",
+			"value": ""
 		}
-	},{
-		"name": "Role Permissions",
-		"job": "RolePermissions",
-		"sql": "cat dummyData/3.log",
-		"value": ""
-	},{
-		"name": "Disk Offering",
-		"job": "DiskOffering",
-		"sql": "cat dummyData/3.log",
-		"value": ""
-	},{
-		"name": "Network Offering",
-		"job": "NetworkOffering",
-		"sql": "cat dummyData/3.log",
-		"value": ""
-	},{
-		"name": "Service Offering",
-		"job": "ServiceOffering",
-		"sql": "cat dummyData/3.log",
-		"value": ""
-	},{
-		"name": "Traffic Lable",
-		"job": "TrafficLable",
-		"sql": "cat dummyData/3.log",
-		"value": ""
-	}
-]
+	]
+}
