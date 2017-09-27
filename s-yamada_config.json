@@ -1,0 +1,34 @@
+{
+	"db_user": "root",
+	"db_password": "r00t",
+	"db_host": "127.0.0.1",
+	"db_name": "acs49",
+	"contents": [
+		{
+			"name": "Version Check",
+			"job": "VersionCheck",
+			"sql": "select * from version;",
+			"value": "4.9.1.0"
+		},{
+			"name": "Global Settings",
+			"job": "GlobalSettings",
+			"sql": "select name,value from configuration where name in ('dynamic.apichecker.enabled', 'user.authenticators.exclude', 'user.authenticators.order', 'user.password.encoders.exclude', 'user.password.encoders.order');",
+			"value": {
+				"dynamic.apichecker.enabled": "true",
+				"user.authenticators.exclude": "NULL",
+				"user.authenticators.order": "MD5,PBKDF2,SHA256SALT,PLAINTEXT",
+				"user.password.encoders.exclude": "PLAINTEXT",
+				"user.password.encoders.order": "MD5,PBKDF2,SHA256SALT,LDAP,SAML2"
+			}
+		},{
+			"name": "mhost",
+			"job": "GlobalSettings",
+			"sql": "select name, version, state, removed from mshost where version like '4.9.1.0';",
+			"value": {
+				"version": "4.9.1.0",
+				"state": "Up",
+				"removed": "NULL"
+      }
+    }
+  ]
+}
