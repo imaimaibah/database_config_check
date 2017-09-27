@@ -17,6 +17,3 @@ class ReadConfig(object):
 	def displayInJson(self):
 		print(json.dumps(self.data, sort_keys=True, indent=4))
 
-	def setContents(self):
-		self.contents = self.data["contents"]
-

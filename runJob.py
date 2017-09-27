@@ -42,7 +42,7 @@ class GlobalSettings(SQLRunner):
 				if data[1] == self.config['value'][data[0]]:
 					print("  {0}Correct{1}: {2} is set to {3}.".format(Colors.GREEN,Colors.ENDC,data[0], data[1]))
 				else:
-					print("  {0}Incorrect{2}: {2} is set to {3}. It should be {4}.".format(Colors.FAIL, Colors.ENDC, data[0], data[1], self.config['value'][data[0]]))
+					print("  {0}Incorrect{1}: {2} is set to {3}. It should be {4}.".format(Colors.FAIL, Colors.ENDC, data[0], data[1], self.config['value'][data[0]]))
 			except:
 				next
 

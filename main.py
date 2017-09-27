@@ -10,11 +10,10 @@ CONFIG_FILE = sys.argv[1] if len(sys.argv) > 1 else "sample_config.json"
 if __name__ == "__main__":
 	blueprint = readConfig.ReadConfig()
 	blueprint.readFile(CONFIG_FILE)
-	blueprint.setContents()
 
 	jobmapper = JobMapper("runJob")
 
-	for config in blueprint.contents:
+	for config in blueprint.data["contents"]:
 		try: 
 			job = jobmapper.class_def[config["job"]](config)
 		except KeyError as e:
