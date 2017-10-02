@@ -11,14 +11,13 @@ class ExecSQL(ReadConfig):
 		MYSQL_USER = self.data["db_user"]
 		MYSQL_PASSWORD = self.data["db_password"]
 		MYSQL_DB = self.data["db_name"]
-		self.data = []
 		if not MYSQL_PASSWORD:
-			cmd = "mysql -u {0} -h {1} {2} -e '{3}' 2>/dev/null".format(MYSQL_USER, MYSQL_SERVER, MYSQL_DB, sql)
+			cmd = "mysql -u {0} -h {1} {2} -e \"{3}\" 2>/dev/null".format(MYSQL_USER, MYSQL_SERVER, MYSQL_DB, sql)
 		else:
-			cmd = "mysql -u {0} -p{1} -h {2} {3} -e '{4}' 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, MYSQL_DB, sql)
-		''' Delete bellow line on the host '''
-		cmd = sql
+			cmd = "mysql -u {0} -p{1} -h {2} {3} -e \"{4}\" 2>/dev/null".format(MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, MYSQL_DB, sql)
+		cmd=sql
 		self.cmd = cmd
+		self.data = []
 
 	def readData(self):
 		return os.popen(self.cmd)
@@ -32,8 +31,13 @@ class ExecSQL(ReadConfig):
 
 
 	def structData(self, line):
-		if not re.match(r'^$',line):
+		tmp=[]
+		if not re.match(r'^$',line) and not re.match(r'^\+',line):
 			line = line.rstrip('\n')
-			element = re.split(r"[\s\t]+",line);
-			self.data.append(element)
+			element = re.split(r"[\|]+",line);
+			element.pop(0)
+			element.pop()
+			for i in element:
+				tmp.append(i.strip())
+			self.data.append(tmp)
 			

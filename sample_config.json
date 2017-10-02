@@ -7,12 +7,14 @@
 		{
 			"name": "Version Check",
 			"job": "VersionCheck",
-			"sql": "cat dummyData/1.log",
+			"sql": "select * from version",
+			"tmp_cmd": "cat dummyData/1.log",
 			"value": "4.9.1.0"
 		},{
 			"name": "Global Settings",
 			"job": "GlobalSettings",
-			"sql": "cat dummyData/3.log",
+			"sql": "select name,value,default_vlue from configuration",
+			"tmp_cmd": "cat dummyData/3.log",
 			"value": {
 				"user.password.encoders.exclude": "PLAINTEXT",
 				"user.password.encoders.order": "MD5,PBKDF2,SHA256SALT,LDAP,SAML2",
@@ -21,29 +23,45 @@
 				"dynamic.apichecker.enabled": "true"
 			}
 		},{
+			"name": "AP Version Check",
+			"job": "APVersionCheck",
+			"sql": "select name,state,version,removed from mshost;",
+			"tmp_cmd": "cat dummyData/2.log",
+			"value": {
+				"tckkejo2-vclweb01p": ["Down","3.0.7","removed"],
+				"tckkejo2-vclweb02p": ["Down","3.0.7","removed"],
+				"tckkejo2-vclweb11": ["Up","4.9.1.0","NULL"],
+				"tckkejo2-vclweb12": ["Up","4.9.1.0","NULL"]
+			}
+		},{
 			"name": "Role Permissions",
 			"job": "RolePermissions",
-			"sql": "cat dummyData/3.log",
+			"sql": "select name,role_type,removed from roles",
+			"tmp_cmd": "cat dummyData/4.log",
 			"value": ""
 		},{
 			"name": "Disk Offering",
 			"job": "DiskOffering",
-			"sql": "cat dummyData/3.log",
+			"sql": "select * from disk_offering_view where removed is null and (name like '%VR_200%' or name like '%VR_1000%')",
+			"tmp_cmd": "cat dummyData/5.log",
 			"value": ""
 		},{
 			"name": "Network Offering",
 			"job": "NetworkOffering",
-			"sql": "cat dummyData/3.log",
+			"sql": "select * from network_offerings where removed is null and (name like '%VR_200%' or name like '%VR_1000%')",
+			"tmp_cmd": "cat dummyData/6.log",
 			"value": ""
 		},{
 			"name": "Service Offering",
 			"job": "ServiceOffering",
-			"sql": "cat dummyData/3.log",
+			"sql": "undef",
+			"tmp_cmd": "cat dummyData/7.log",
 			"value": ""
 		},{
 			"name": "Traffic Lable",
 			"job": "TrafficLable",
-			"sql": "cat dummyData/3.log",
+			"sql": "select * from vmware_data_center as vcenter left join vmware_data_center_zone_map as map on vcenter.id = map.vmware_data_center_id",
+			"tmp_cmd": "cat dummyData/8.log",
 			"value": ""
 		}
 	]

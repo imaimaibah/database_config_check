@@ -1,0 +1,8 @@
++----+--------------------------------------+----------------+---------------+---------+-----------------------------+
+| id | uuid                                 | name           | role_type     | removed | description                 |
++----+--------------------------------------+----------------+---------------+---------+-----------------------------+
+|  1 | ea01e988-a289-11e7-8a82-a81e84207310 | Root Admin     | Admin         | NULL    | Default root admin role     |
+|  2 | ea01fa5e-a289-11e7-8a82-a81e84207310 | Resource Admin | ResourceAdmin | NULL    | Default resource admin role |
+|  3 | ea020a62-a289-11e7-8a82-a81e84207310 | Domain Admin   | DomainAdmin   | NULL    | Default domain admin role   |
+|  4 | ea021b56-a289-11e7-8a82-a81e84207310 | User           | User          | NULL    | Default user role           |
++----+--------------------------------------+----------------+---------------+---------+-----------------------------+
