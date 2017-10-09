@@ -34,9 +34,10 @@ class ExecSQL(ReadConfig):
 		tmp=[]
 		if not re.match(r'^$',line) and not re.match(r'^\+',line):
 			line = line.rstrip('\n')
-			element = re.split(r"[\|]+",line);
-			element.pop(0)
-			element.pop()
+			#element = re.split(r"\|",line);
+			element = re.split(r"[\t\s]",line)
+			#element.pop(0)
+			#element.pop()
 			for i in element:
 				tmp.append(i.strip())
 			self.data.append(tmp)

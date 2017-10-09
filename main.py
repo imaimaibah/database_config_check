@@ -26,8 +26,9 @@ if __name__ == "__main__":
 			print('args: {0}'.format(str(e.args)))
 		except Exception as e:
 			print('=== ' + config['name'] + ' ===')
+			print(e.args)
 			print('type: {0}'.format(str(type(e))))
-			print('message: {0}'.format(e.message))
+			print('message: {0}'.format(e.args))
 
 
 		try:
@@ -36,6 +37,6 @@ if __name__ == "__main__":
 			print('=== Error ===')
 			print('type: {0}'.format(str(type(e))))
 			print('args: {0}'.format(str(e.args)))
-			print('message: {0}'.format(e.message))
+			print('message: {0}'.format(e.args))
 			print('e itself: {0}'.format(str(e)))
 

@@ -13,7 +13,7 @@
 		},{
 			"name": "Global Settings",
 			"job": "GlobalSettings",
-			"sql": "select name,value,default_vlue from configuration",
+			"sql": "select name,value,default_value from configuration",
 			"tmp_cmd": "cat dummyData/3.log",
 			"value": {
 				"user.password.encoders.exclude": "PLAINTEXT",
@@ -38,31 +38,31 @@
 			"job": "RolePermissions",
 			"sql": "select name,role_type,removed from roles",
 			"tmp_cmd": "cat dummyData/4.log",
-			"value": ""
+			"value": "undef"
 		},{
 			"name": "Disk Offering",
 			"job": "DiskOffering",
 			"sql": "select * from disk_offering_view where removed is null and (name like '%VR_200%' or name like '%VR_1000%')",
 			"tmp_cmd": "cat dummyData/5.log",
-			"value": ""
+			"value": "undef"
 		},{
 			"name": "Network Offering",
 			"job": "NetworkOffering",
 			"sql": "select * from network_offerings where removed is null and (name like '%VR_200%' or name like '%VR_1000%')",
 			"tmp_cmd": "cat dummyData/6.log",
-			"value": ""
+			"value": "undef"
 		},{
 			"name": "Service Offering",
 			"job": "ServiceOffering",
 			"sql": "undef",
 			"tmp_cmd": "cat dummyData/7.log",
-			"value": ""
+			"value": "undef"
 		},{
 			"name": "Traffic Lable",
 			"job": "TrafficLable",
 			"sql": "select * from vmware_data_center as vcenter left join vmware_data_center_zone_map as map on vcenter.id = map.vmware_data_center_id",
 			"tmp_cmd": "cat dummyData/8.log",
-			"value": ""
+			"value": "undef"
 		}
 	]
 }
