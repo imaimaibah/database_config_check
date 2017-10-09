@@ -25,7 +25,7 @@
 		},{
 			"name": "AP Version Check",
 			"job": "APVersionCheck",
-			"sql": "select name,state,version,removed from mshost;",
+			"sql": "select name,state,version,removed from mshost",
 			"tmp_cmd": "cat dummyData/2.log",
 			"value": {
 				"tckkejo2-vclweb01p": ["Down","3.0.7","removed"],
@@ -42,7 +42,7 @@
 		},{
 			"name": "Disk Offering",
 			"job": "DiskOffering",
-			"sql": "select * from disk_offering_view where removed is null and (name like '%VR_200%' or name like '%VR_1000%')",
+			"sql": "select * from disk_offering where removed is null and (name like '%VR_200%' or name like '%VR_1000%')",
 			"tmp_cmd": "cat dummyData/5.log",
 			"value": "undef"
 		},{

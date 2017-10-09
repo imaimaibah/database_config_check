@@ -1,0 +1,2 @@
+id	uuid	name	guid	vcenter_host	username	password	id	zone_id	vmware_data_center_id
+1	6d8afdd5-cc0c-4cdb-a139-b5cfcd9c7236	vmjp-east03	vmjp-east03@198.19.35.250	198.19.35.250	ckk_adm	1pfl+4eA7gSgbIs2eF0QZ1tLVRcgUYB+	1	9	1
