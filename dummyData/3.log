@@ -64,7 +64,7 @@ consoleproxy.restart	true	true
 consoleproxy.service.offering	1631	1631
 consoleproxy.session.max	50	50
 consoleproxy.session.timeout	300000	300000
-consoleproxy.url.domain	*.con.cloud-platform.kddi.ne.jp	*.con.cloud-platform.kddi.ne.jp
+consoleproxy.url.domain	*.con.cloud-platform.ne.jp	*.con.cloud-platform.ne.jp
 control.cidr	169.254.0.0/16	169.254.0.0/16
 control.gateway	169.254.0.1	169.254.0.1
 copy.volume.wait	345600	345600
@@ -353,7 +353,7 @@ secstorage.encrypt.copy	false	false
 secstorage.proxy	NULL	NULL
 secstorage.service.offering	1633	1633
 secstorage.session.max	5	5
-secstorage.ssl.cert.domain	*.con.cloud-platform.kddi.ne.jp	*.con.cloud-platform.kddi.ne.jp
+secstorage.ssl.cert.domain	*.con.cloud-platform.ne.jp	*.con.cloud-platform.ne.jp
 secstorage.vm.mtu.size	1500	1500
 security.checkers.exclude	NULL	NULL
 security.checkers.order	AffinityGroupAccessChecker,DomainChecker	AffinityGroupAccessChecker,DomainChecker
